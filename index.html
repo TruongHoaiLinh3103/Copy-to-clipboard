@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy-to-clipboard</title>
+    <link href="./css/main.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Copy to clipboard</h1>
+    <h2>Example</h2>
+    <pre class="box-x"><code>import copy from &#39;copy-to-clipboard&#39;;
+    
+copy(&#39;Text&#39;);
+
+// Copy with options
+copy(&#39;Text&#39;, {
+    debug: true,
+    message: &#39;Press #{key} to copy&#39;,
+});
+    </code></pre>
+    <h2>API</h2>
+    <p><code>copy(text: string, options: object): boolean</code> &mdash; tries to copy text to clipboard. Returns <code>true</code> if no additional keystrokes were required from user (so, <code>execCommand</code>, IE&#39;s <code>clipboardData</code> worked) or <code>false</code>.</p>
+    <div class="box-x">
+        <table>
+            <thead>
+               <tr>
+                  <th>Value</th>
+                  <th>Default</th>
+                  <th>Notes</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>options.debug</td>
+                  <td>false</td>
+                  <td><code>Boolean</code>. Optional. Enable output to console.</td>
+               </tr>
+               <tr>
+                  <td>options.message</td>
+                  <td>Copy to clipboard: <code>#{key}</code>, Enter</td>
+                  <td><code>String</code>. Optional. Prompt message. <code>*</code></td>
+               </tr>
+               <tr>
+                  <td>options.format</td>
+                  <td>&quot;text/html&quot;</td>
+                  <td><code>String</code>. Optional. Set the MIME type of what you want to copy as. Use <code>text/html</code> to copy as HTML, <code>text/plain</code> to avoid inherited styles showing when pasted into rich text editor.</td>
+               </tr>
+               <tr>
+                  <td>options.onCopy</td>
+                  <td>null</td>
+                  <td><code>function onCopy(clipboardData: object): void</code>. Optional. Receives the clipboardData element for adding custom behavior such as additional formats</td>
+               </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><code>*</code> all occurrences of <code>#{key}</code> are replaced with <code>⌘+C</code> for macOS/iOS users, and <code>Ctrl+C</code> otherwise.</p>
+    <h2>Installation</h2>
+    <p>Can be used as npm package and then leveraged using commonjs bundler/loader:</p>
+    <pre class="box-x"><code>npm i --save copy-to-clipboard
+    </code></pre>
+    <p>Can be utilized using <a href="https://wzrd.in/">wzrd.in</a>. Add following script to your page:</p>
+    <pre class="box-x"><code class="language-html">&lt;script src=&quot;https://wzrd.in/standalone/copy-to-clipboard@latest&quot; async&gt;&lt;/script&gt;
+    </code></pre>
+    <p>You will have <code>window.copyToClipboard</code> exposed for you to use.</p>
+</body>
+</html>
